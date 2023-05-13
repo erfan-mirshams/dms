@@ -11,6 +11,7 @@ protected:
     int reward;
 public:
     Mission(int _id, ll _start, ll _finish, int _reward);
+    inline int getId(){return id;}
 };
 
 class TimeMission : public Mission{
