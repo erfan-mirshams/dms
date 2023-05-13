@@ -13,7 +13,9 @@ protected:
 public:
     Mission(int _id, ll _start, ll _finish, int _reward);
     inline int getId(){return id;}
+    string getInfo();
     virtual bool isCompleted(const vector<Ride> &vec) = 0;
+    virtual ~Mission(){}
 };
 
 class TimeMission : public Mission{

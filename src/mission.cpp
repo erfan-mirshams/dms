@@ -48,3 +48,12 @@ bool DistanceMission::isCompleted(const vector<Ride> &vec){
     }
     return curDis >= distance;
 }
+
+string Mission::getInfo(){
+    ostringstream output;
+    output << "mission: " << id << endl
+           << "start timestamp: " << start << endl
+           << "end timestamp: " << finish << endl
+           << "reward: " << reward << endl;
+    return output.str();
+}

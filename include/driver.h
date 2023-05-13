@@ -16,6 +16,10 @@ public:
     void assignMission(Mission* mission);
     Mission* findMissionById(int id);
     int getId(){ return id;}
+    void addRide(ll start, ll finish, int distance);
+    bool isInCompletedIndexes(int ind);
+    string newCompletedMissionsReport();
+    string getMissionsStatus();
 };
 
 #endif // DRIVER_H_

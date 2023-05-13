@@ -21,3 +21,38 @@ void Driver::assignMission(Mission *mission){
         throw logic_error(DUPLICATE_DRIVER_MSG);
     }
 }
+
+void Driver::addRide(ll start, ll finish, int distance){
+    rides.push_back(Ride(start, finish, distance));
+}
+
+bool Driver::isInCompletedIndexes(int ind){
+    for(auto x : completedIndexes){
+        if(ind == x){
+            return true;
+        }
+    }
+    return false;
+}
+
+string Driver::newCompletedMissionsReport(){
+    ostringstream output;
+    for(int i = 0; i < (int)missions.size(); i++){
+        if(isInCompletedIndexes(i)){
+            continue;
+        }
+        if(missions[i] -> isCompleted(rides)){
+            output << missions[i] -> getInfo() << endl;
+            completedIndexes.push_back(i);
+        }
+    }
+    return output.str();
+}
+
+string Driver::getMissionsStatus(){
+    ostringstream output;
+    for(int i = 0; i < (int)missions.size(); i++){
+        output << missions[i] -> getInfo() << "status: "<< (isInCompletedIndexes(i) ? "completed" : "ongoing") << endl;
+    }
+    return output.str();
+}

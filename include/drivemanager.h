@@ -17,6 +17,9 @@ public:
     Mission* findMissionById(int _id);
     Driver* findDriverById(int _id);
     void assignMission(int missionId, int driverId);
+    void recordRide(ll start, ll finish, int driverId, int distance);
+    string newCompletedMissionsReport(int driverId);
+    string missionsStatus(int driverId);
     virtual ~DriveManager();
 };
 
