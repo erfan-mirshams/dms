@@ -15,6 +15,7 @@ public:
     void addDistanceMission(int _id, ll _start, ll _finish, int _distance, int reward);
     void addCountMission(int _id, ll _start, ll _finish, int _count, int reward);
     Mission* findMissionById(int _id);
+    Driver* findDriverById(int _id);
     void assignMission(int missionId, int driverId);
     virtual ~DriveManager();
 };

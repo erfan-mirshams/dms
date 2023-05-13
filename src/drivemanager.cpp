@@ -15,6 +15,7 @@ string DriveManager::handleCommand(vector<string> cmd){
     }
     if(isValidCommand(cmd, ASSIGN_MISSION)){
         assignMission(stoi(cmd[1]), stoi(cmd[2]));
+        return OK_STR;
     }
     throw logic_error(INVALID_ARGUMENTS_MSG);
 }
@@ -64,11 +65,26 @@ Mission* DriveManager::findMissionById(int _id){
     return NULL;
 }
 
+Driver* DriveManager::findDriverById(int _id){
+    for(auto d : drivers){
+        if(d -> getId() == _id){
+            return d;
+        }
+    }
+    return NULL;
+}
+
 void DriveManager::assignMission(int missionId, int driverId){
     Mission* mission = findMissionById(missionId);
     if(mission == NULL){
         throw logic_error(MISSION_NOT_FOUND_MSG);
     }
+    Driver* driver = findDriverById(driverId);
+    if(driver == NULL){
+        driver = new Driver(driverId);
+        drivers.push_back(driver);
+    }
+    driver -> assignMission(mission);
 
 }
 

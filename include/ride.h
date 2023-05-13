@@ -11,6 +11,9 @@ private:
 public:
     Ride();
     Ride(ll _start, ll _finish, int _distance);
+    ll getStart() { return start; }
+    ll getFinish() { return finish; }
+    int getDistance() { return distance; }
 };
 
 #endif // RIDE_H_

@@ -15,6 +15,7 @@ public:
     Driver(int _id);
     void assignMission(Mission* mission);
     Mission* findMissionById(int id);
+    int getId(){ return id;}
 };
 
 #endif // DRIVER_H_

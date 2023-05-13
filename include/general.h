@@ -24,5 +24,5 @@ enum CMD_TYPE{ADD_TIME_MISSION, ADD_DISTANCE_MISSION, ADD_COUNT_MISSION, ASSIGN_
 
 bool isTimeSegmentValid(ll a, ll b);
 bool isValidCommand(vector<string> cmd, int ind);
-
+bool isInTimeSegment(ll st, ll fn, ll st2, ll fn2);
 #endif // GENERAL_H_
