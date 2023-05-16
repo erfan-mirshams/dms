@@ -5,7 +5,10 @@ Mission::Mission(int _id, ll _start, ll _finish, int _reward){
     start = _start;
     finish = _finish;
     reward = _reward;
-    endTimeStamp = NA;
+}
+
+bool Mission::isBefore(Mission *b){
+    return (this -> start < b -> start) || (this -> start == b -> start && this -> finish < b -> finish);
 }
 
 TimeMission::TimeMission(int _id, ll _start, ll _finish, int _timeInMins, int _reward) : Mission(_id, _start, _finish, _reward){
@@ -20,19 +23,21 @@ DistanceMission::DistanceMission(int _id, ll _start, ll _finish, int _distance, 
     distance = _distance;
 }
 
-bool TimeMission::isCompleted(const vector<Ride> &vec){
+bool TimeMission::isCompleted(int driverId, const vector<Ride> &vec){
     int curTime = 0;
-    for(auto r : vec){
+    for(int i = startRideIndex[driverId]; i < (int)vec.size(); i++){
+        auto r = vec[i];
         if(isInTimeSegment(start, finish, r.getStart(), r.getFinish())){
             curTime += r.getFinish() - r.getStart() + 1;
         }
     }
-    return curTime >= timeInMins;
+    return curTime / SECONDS_IN_MIN >= timeInMins;
 }
 
-bool CountMission::isCompleted(const vector<Ride> &vec){
+bool CountMission::isCompleted(int driverId, const vector<Ride> &vec){
     int curCount = 0;
-    for(auto r : vec){
+    for(int i = startRideIndex[driverId]; i < (int)vec.size(); i++){
+        auto r = vec[i];
         if(isInTimeSegment(start, finish, r.getStart(), r.getFinish())){
             curCount++;
         }
@@ -40,9 +45,10 @@ bool CountMission::isCompleted(const vector<Ride> &vec){
     return curCount >= count;
 }
 
-bool DistanceMission::isCompleted(const vector<Ride> &vec){
+bool DistanceMission::isCompleted(int driverId, const vector<Ride> &vec){
     int curDis = 0;
-    for(auto r : vec){
+    for(int i = startRideIndex[driverId]; i < (int)vec.size(); i++){
+        auto r = vec[i];
         if(isInTimeSegment(start, finish, r.getStart(), r.getFinish())){
             curDis += r.getDistance();
         }
@@ -50,11 +56,11 @@ bool DistanceMission::isCompleted(const vector<Ride> &vec){
     return curDis >= distance;
 }
 
-string Mission::getInfo(){
+string Mission::getInfo(int driverId){
     ostringstream output;
     output << "mission: " << id << endl
            << "start timestamp: " << start << endl
-           << "end timestamp: " << endTimeStamp << endl
+           << "end timestamp: " << endTimeStamp[driverId] - 1 << endl
            << "reward: " << reward << endl;
     return output.str();
 }

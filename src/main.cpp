@@ -8,7 +8,15 @@ int main() {
     while(getline(cin, line)){
         line = trimBoth(line);
         try{
-            cout << driveMan.handleCommand(splitIntoWords(line)) << endl;
+            string printedLine = driveMan.handleCommand(splitIntoWords(line));
+            if(printedLine.size()){
+                if(printedLine[printedLine.size() - 1] == '\n'){
+                    cout << printedLine;
+                }
+                else{
+                    cout << printedLine << endl;
+                }
+            }
         }
         catch(logic_error &le){
             cout << le.what() << endl;
