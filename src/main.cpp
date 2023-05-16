@@ -10,12 +10,10 @@ int main() {
         try{
             string printedLine = driveMan.handleCommand(splitIntoWords(line));
             if(printedLine.size()){
-                if(printedLine[printedLine.size() - 1] == '\n'){
-                    cout << printedLine;
+                while(printedLine[printedLine.size() - 1] == '\n'){
+                    printedLine = printedLine.substr(0, printedLine.size() - 1);
                 }
-                else{
-                    cout << printedLine << endl;
-                }
+                cout << printedLine << endl;
             }
         }
         catch(logic_error &le){
