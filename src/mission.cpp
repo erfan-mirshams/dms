@@ -5,6 +5,7 @@ Mission::Mission(int _id, ll _start, ll _finish, int _reward){
     start = _start;
     finish = _finish;
     reward = _reward;
+    endTimeStamp = NA;
 }
 
 TimeMission::TimeMission(int _id, ll _start, ll _finish, int _timeInMins, int _reward) : Mission(_id, _start, _finish, _reward){
@@ -53,7 +54,7 @@ string Mission::getInfo(){
     ostringstream output;
     output << "mission: " << id << endl
            << "start timestamp: " << start << endl
-           << "end timestamp: " << finish << endl
+           << "end timestamp: " << endTimeStamp << endl
            << "reward: " << reward << endl;
     return output.str();
 }

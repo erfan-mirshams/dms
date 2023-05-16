@@ -9,10 +9,12 @@ protected:
     int id;
     ll start;
     ll finish;
+    ll endTimeStamp;
     int reward;
 public:
     Mission(int _id, ll _start, ll _finish, int _reward);
     inline int getId(){return id;}
+    inline void setEndTimeStamp(ll x) {endTimeStamp = x;}
     string getInfo();
     virtual bool isCompleted(const vector<Ride> &vec) = 0;
     virtual ~Mission(){}

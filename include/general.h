@@ -18,6 +18,7 @@ const string DRIVER_MISSION_NOT_FOUND = "DRIVER_MISSION_NOT_FOUND";
 
 const string OK_STR = "OK";
 
+const int NA = -1;
 const int CMD_CNT = 6;
 const string CMD_STRING[CMD_CNT] = {"add_time_mission", "add_distance_mission", "add_count_mission", "assign_mission", "record_ride", "show_missions_status"};
 const int CMD_LEN[CMD_CNT] = {5, 5, 5, 2, 4, 1};

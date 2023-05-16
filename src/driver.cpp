@@ -42,6 +42,7 @@ string Driver::newCompletedMissionsReport(){
             continue;
         }
         if(missions[i] -> isCompleted(rides)){
+            missions[i] -> setEndTimeStamp(rides[(int)rides.size() - 1].getFinish());
             output << missions[i] -> getInfo() << endl;
             completedIndexes.push_back(i);
         }

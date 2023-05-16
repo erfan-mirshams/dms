@@ -28,39 +28,33 @@ string DriveManager::handleCommand(vector<string> cmd){
 }
 
 void DriveManager::addTimeMission(int _id, ll _start, ll _finish, int _timeInMins, int _reward){
+    if(findMissionById(_id) != NULL){
+        throw logic_error(DUPLICATE_MISSION_MSG);
+    }
     if(!isTimeSegmentValid(_start, _finish) || _timeInMins < 0 || _reward < 0){
         throw logic_error(INVALID_ARGUMENTS_MSG);
     }
-    if(findMissionById(_id) == NULL){
-        missions.push_back(new TimeMission(_id, _start, _finish, _timeInMins, _reward));
-    }
-    else{
-        throw logic_error(DUPLICATE_MISSION_MSG);
-    }
+    missions.push_back(new TimeMission(_id, _start, _finish, _timeInMins, _reward));
 }
 
 void DriveManager::addDistanceMission(int _id, ll _start, ll _finish, int _distance, int _reward){
+    if(findMissionById(_id) != NULL){
+        throw logic_error(DUPLICATE_MISSION_MSG);
+    }
     if(!isTimeSegmentValid(_start, _finish) || _distance < 0 || _reward < 0){
         throw logic_error(INVALID_ARGUMENTS_MSG);
     }
-    if(findMissionById(_id) == NULL){
-        missions.push_back(new DistanceMission(_id, _start, _finish, _distance, _reward));
-    }
-    else{
-        throw logic_error(DUPLICATE_MISSION_MSG);
-    }
+    missions.push_back(new DistanceMission(_id, _start, _finish, _distance, _reward));
 }
 
 void DriveManager::addCountMission(int _id, ll _start, ll _finish, int _count, int _reward){
+    if(findMissionById(_id) != NULL){
+        throw logic_error(DUPLICATE_MISSION_MSG);
+    }
     if(!isTimeSegmentValid(_start, _finish) || _count < 0 || _reward < 0){
         throw logic_error(INVALID_ARGUMENTS_MSG);
     }
-    if(findMissionById(_id) == NULL){
-        missions.push_back(new CountMission(_id, _start, _finish, _count, _reward));
-    }
-    else{
-        throw logic_error(DUPLICATE_MISSION_MSG);
-    }
+    missions.push_back(new CountMission(_id, _start, _finish, _count, _reward));
 }
 
 Mission* DriveManager::findMissionById(int _id){
@@ -107,6 +101,9 @@ void DriveManager::recordRide(ll start, ll finish, int driverId, int distance){
 
 string DriveManager::newCompletedMissionsReport(int driverId){
     Driver* driver = findDriverById(driverId);
+    if(driver == NULL){
+        return "";
+    }
     ostringstream output;
     output << "completed missions for driver " << driverId << ":" << endl;
     if(driver == NULL){

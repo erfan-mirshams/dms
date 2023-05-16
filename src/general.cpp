@@ -9,5 +9,5 @@ bool isValidCommand(vector<string> cmd, int ind){
 }
 
 bool isInTimeSegment(ll st, ll fn, ll st2, ll fn2){
-    return (st <= st2 && fn <= fn2);
+    return (st <= st2 && fn2 <= fn);
 }
