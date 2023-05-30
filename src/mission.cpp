@@ -58,7 +58,7 @@ bool DistanceMission::isCompleted(int driverId, const vector<Ride> &vec){
 
 string Mission::getInfo(int driverId){
     ostringstream output;
-    output << "mission: " << id << endl
+    output << "mission " << id << ": " << endl
            << "start timestamp: " << start << endl
            << "end timestamp: " << endTimeStamp[driverId] - 1 << endl
            << "reward: " << reward << endl;
